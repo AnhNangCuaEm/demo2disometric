@@ -1,0 +1,27 @@
+<svg width="128" height="128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Festival Tileset for Japonism Festival -->
+  
+  <!-- Row 1: Terrain tiles -->
+  <rect x="0" y="0" width="32" height="32" fill="#8B4513"/>   <!-- Brown border -->
+  <rect x="32" y="0" width="32" height="32" fill="#90EE90"/>  <!-- Light green path -->
+  <rect x="64" y="0" width="32" height="32" fill="#228B22"/>  <!-- Forest green -->
+  <rect x="96" y="0" width="32" height="32" fill="#32CD32"/>  <!-- Lime green -->
+  
+  <!-- Row 2: Water and decorative -->
+  <rect x="0" y="32" width="32" height="32" fill="#87CEEB"/>  <!-- Sky blue -->
+  <rect x="32" y="32" width="32" height="32" fill="#4169E1"/> <!-- Royal blue -->
+  <rect x="64" y="32" width="32" height="32" fill="#FFD700"/> <!-- Gold -->
+  <rect x="96" y="32" width="32" height="32" fill="#FFA500"/> <!-- Orange -->
+  
+  <!-- Row 3: Festival colors -->
+  <rect x="0" y="64" width="32" height="32" fill="#E6E6FA"/>  <!-- Lavender -->
+  <rect x="32" y="64" width="32" height="32" fill="#DDA0DD"/> <!-- Plum -->
+  <rect x="64" y="64" width="32" height="32" fill="#FF69B4"/> <!-- Hot pink -->
+  <rect x="96" y="64" width="32" height="32" fill="#DC143C"/> <!-- Crimson -->
+  
+  <!-- Row 4: Natural elements -->
+  <rect x="0" y="96" width="32" height="32" fill="#F5F5DC"/>  <!-- Beige -->
+  <rect x="32" y="96" width="32" height="32" fill="#D2B48C"/> <!-- Tan -->
+  <rect x="64" y="96" width="32" height="32" fill="#A0522D"/> <!-- Sienna -->
+  <rect x="96" y="96" width="32" height="32" fill="#556B2F"/> <!-- Dark olive green -->
+</svg>
