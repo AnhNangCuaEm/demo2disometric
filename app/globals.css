@@ -64,7 +64,6 @@ body {
 
 /* Common styles */
 .page-container {
-  max-width: 1200px;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -101,6 +100,53 @@ body {
   overflow: hidden;
   background: #f7fafc;
   position: relative;
+}
+
+/* Fullscreen game container for venue */
+.game-container-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+  background: #000;
+  z-index: 10;
+}
+
+/* Home button for fullscreen mode */
+.home-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  color: #4a5568;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.home-button:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.home-button:active {
+  transform: scale(0.95);
 }
 
 /* Controller styles */

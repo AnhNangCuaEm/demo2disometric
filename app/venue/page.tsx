@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Link from 'next/link';
 import Phaser from 'phaser';
 import { io, Socket } from 'socket.io-client';
 
@@ -60,8 +61,9 @@ class VenueScene extends Phaser.Scene {
 
   createMap() {
     const tileSize = 32;
-    const mapWidth = 25;
-    const mapHeight = 19;
+    // Scale map based on screen size
+    const mapWidth = Math.ceil(this.cameras.main.width / tileSize) + 2;
+    const mapHeight = Math.ceil(this.cameras.main.height / tileSize) + 2;
     
     // Create a simple map pattern
     for (let y = 0; y < mapHeight; y++) {
@@ -81,16 +83,17 @@ class VenueScene extends Phaser.Scene {
       }
     }
     
-    // Add festival decorations
-    this.add.text(400, 50, '🎎 Japonism Festival', {
-      fontSize: '24px',
+    // Add festival decorations - centered on screen
+    const centerX = this.cameras.main.width / 2;
+    this.add.text(centerX, 50, '🎎 Japonism Festival', {
+      fontSize: '32px',
       color: '#ffffff',
       stroke: '#000000',
       strokeThickness: 4
     }).setOrigin(0.5);
     
-    this.add.text(400, 550, 'Click to move or use arrow keys', {
-      fontSize: '16px',
+    this.add.text(centerX, this.cameras.main.height - 50, 'Click to move or use arrow keys', {
+      fontSize: '18px',
       color: '#ffffff',
       stroke: '#000000',
       strokeThickness: 2
@@ -208,8 +211,8 @@ export default function VenuePage() {
     if (typeof window !== 'undefined' && !gameRef.current) {
       const config: Phaser.Types.Core.GameConfig = {
         type: Phaser.AUTO,
-        width: 800,
-        height: 600,
+        width: window.innerWidth,
+        height: window.innerHeight,
         parent: 'phaser-game',
         backgroundColor: '#87CEEB',
         scene: VenueScene,
@@ -219,10 +222,27 @@ export default function VenuePage() {
             gravity: { y: 0, x: 0 },
             debug: false
           }
+        },
+        scale: {
+          mode: Phaser.Scale.RESIZE,
+          autoCenter: Phaser.Scale.CENTER_BOTH
         }
       };
 
       gameRef.current = new Phaser.Game(config);
+
+      // Handle window resize
+      const handleResize = () => {
+        if (gameRef.current) {
+          gameRef.current.scale.resize(window.innerWidth, window.innerHeight);
+        }
+      };
+
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
     }
 
     return () => {
@@ -274,23 +294,14 @@ export default function VenuePage() {
   }, []);
 
   return (
-    <div className="page-container">
-      <h1 className="page-title">🗺️ Festival Venue</h1>
-      <p className="page-description">
-        Welcome to the Japonism Festival! Move around using arrow keys or click to move.
-        See other visitors in real-time.
-      </p>
-      
-      <div className="game-container">
+    <>
+      <Link href="/" className="home-button" title="Go to Home">
+        🏠
+      </Link>
+
+      <div className="game-container-fullscreen">
         <div id="phaser-game" style={{ width: '100%', height: '100%' }} />
       </div>
-      
-      <div className="controller-info">
-        <p><strong>Controls:</strong></p>
-        <p>🖱️ Click anywhere on the map to move</p>
-        <p>⌨️ Use arrow keys to move around</p>
-        <p>👥 See other players in real-time</p>
-      </div>
-    </div>
+    </>
   );
 }
